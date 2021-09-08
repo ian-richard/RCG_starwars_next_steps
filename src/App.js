@@ -13,7 +13,7 @@ function App() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('https://swapi.dev/api/films/');
+      const response = await fetch('https://rcg-react-http-default-rtdb.europe-west1.firebasedatabase.app/movies.json');
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
@@ -40,7 +40,10 @@ function App() {
   }, [fetchMoviesHandler]);
 
   function addMovieHandler(movie) {
-    console.log(movie);
+    fetch('https://rcg-react-http-default-rtdb.europe-west1.firebasedatabase.app/movies.json', {
+      method: 'POST',
+      body: JSON.stringify(movie)
+    });
   }
 
   let content = <p>Found no movies.</p>;
